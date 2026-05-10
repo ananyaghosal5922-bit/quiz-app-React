@@ -1,16 +1,26 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import QuizApp from "./pages/QuizApp";
+
+function Home() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+
+      <Link to="/quiz-app">
+        <button>Go To Quiz App</button>
+      </Link>
+    </div>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
 
-      <Link to="/">Home</Link>
-      <br />
-      <Link to="/quiz-app">Quiz App</Link>
-
       <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/quiz-app" element={<h1>Quiz App Page</h1>} />
+        <Route path="/" element={<Home />} />
+
+        <Route path="/quiz-app" element={<QuizApp />} />
       </Routes>
 
     </BrowserRouter>
