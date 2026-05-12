@@ -7,7 +7,15 @@ function QuizApp() {
 
   const [selectedAnswer, setSelectedAnswer] = useState("");
 
+  const [score, setScore] = useState(0);
+
   const nextQuestion = () => {
+     if (
+      selectedAnswer ===
+      questions[currentQuestion].correctAnswer
+    ) {
+      setScore(score + 1);
+    }
     setCurrentQuestion(currentQuestion + 1);
 
      setSelectedAnswer("");
@@ -17,6 +25,8 @@ function QuizApp() {
     <div>
 
       <h1>Quiz App</h1>
+       {currentQuestion < questions.length ? (
+      <div>
 
       <h2>{questions[currentQuestion].question}</h2>
 
@@ -38,15 +48,24 @@ function QuizApp() {
         </div>
       ))}
            <br />
+       <button onClick={nextQuestion}>
+            Next
+          </button>
 
-      {currentQuestion < questions.length - 1 && (
-        <button onClick={nextQuestion}>
-          Next
-        </button>
+        </div>
+
+      ) : (
+
+        <h2>
+          Your Score: {score} / {questions.length}
+        </h2>
+
       )}
 
     </div>
   );
 }
+
+      
 
 export default QuizApp;
